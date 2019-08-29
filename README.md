@@ -10,7 +10,7 @@ docker build -t iptracker .
 docker run -p 3783:3783 -t iptracker
 ```
 
-Acceder desde http://localhost:3783
+Acceder mediante web browser a http://localhost:3783
 (En caso de estar en una vm, verificar con que host se resuelve)
 
 Para matar el proceso
