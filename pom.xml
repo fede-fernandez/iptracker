@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.iptracker</groupId>
+	<artifactId>iptracker</artifactId>
+	<version>1.0.0</version>
+	<name>iptracker</name>
+	<description>IP Tracker</description>
+
+	<properties>
+		<server.startup.class>${project.groupId}.server.Server</server.startup.class>
+		<java.version>1.8</java.version>
+		<gson.version>2.8.5</gson.version>
+		<jersey.version>1.19.4</jersey.version>
+		<spark.version>2.8.0</spark.version>
+		<spark.template.freemarker.version>2.7.1</spark.template.freemarker.version>
+		<maven.compiler.version>3.1</maven.compiler.version>
+		<slf4j.version>1.7.28</slf4j.version>
+		<junit.version>4.12</junit.version>
+	</properties>
+
+	<dependencies>
+		<!-- ################### SPARK #################### -->
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-core</artifactId>
+			<version>${spark.version}</version>
+		</dependency>
+		<!-- ################### SPARK #################### -->
+		
+		<!-- ############### SPARK TEMPLATE ############### -->
+		<dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-template-freemarker</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<!-- ############### SPARK TEMPLATE ################ -->
+
+		<!-- #################### GSON #################### -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
+		</dependency>
+		<!-- #################### GSON #################### -->
+
+		<!-- ################### JERSEY ################### -->
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
+		<!-- ################### JERSEY ################### -->
+
+		<!-- ################### SLF4J #################### -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- ################### SLF4J #################### -->
+		
+		<!-- ################### JUNIT #################### -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- ################### JUNIT #################### -->
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<archive>
+								<manifest>
+									<mainClass>${server.startup.class}</mainClass>
+								</manifest>
+							</archive>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
